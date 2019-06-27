@@ -12,7 +12,7 @@ yarn test
 # make sure we're having the latest version
 VERSION=$(npm info @prisma/lift --json | jq .version)
 tmp=$(mktemp)
-jq ".version = \"${VERSION}\"" package.json > "$tmp" && mv "$tmp" package.json
+jq ".version = ${VERSION}" package.json > "$tmp" && mv "$tmp" package.json
 
 yarn publish --patch --no-git-tag-version
 
