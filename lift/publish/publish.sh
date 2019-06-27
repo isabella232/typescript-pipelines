@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+curl -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+chmod +x /usr/local/bin/jq
 env
 git clone https://github.com/prisma/lift
 cd lift
