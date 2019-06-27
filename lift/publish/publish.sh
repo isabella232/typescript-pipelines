@@ -20,5 +20,5 @@ git config --global user.email "prismabots@gmail.com"
 git config --global user.name "prisma-bot"
 export NEW_VERSION=$(cat package.json | jq .version)
 git commit -a -m $NEW_VERSION
-git remote add origin-push https://${GH_TOKEN}@github.com/prisma/lift.git > /dev/null 2>&1
+git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/lift.git > /dev/null 2>&1
 git push --quiet --set-upstream origin-push $branch
