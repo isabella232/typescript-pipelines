@@ -1,7 +1,7 @@
 steps:
-  - command: clone-repo.sh
+  - command: lift/publish/clone-repo.sh
   - label: ':shell: '
     plugins:
       - docker-compose:
-          config: docker-compose.yml
+          config: lift/publish/docker-compose.yml
           run: app
