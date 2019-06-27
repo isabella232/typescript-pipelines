@@ -18,7 +18,7 @@ yarn publish --patch --no-git-tag-version
 
 git config --global user.email "prismabots@gmail.com"
 git config --global user.name "prisma-bot"
-export NEW_VERSION=$(cat package.json | jq .version)
-git commit -a -m $(echo $NEW_VERSION | sed 's/"//g')
+export NEW_VERSION=$(cat package.json | jq .version | sed 's/"//g')
+git commit -a -m "$NEW_VERSION [skip ci]"
 git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/lift.git > /dev/null 2>&1
 git push --quiet --set-upstream origin-push $branch
