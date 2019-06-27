@@ -6,3 +6,6 @@ services:
       - ./:/root
     working_dir: /root
     command: /root/publish.sh
+    environment:
+      - NPM_TOKEN
+      - GITHUB_TOKEN
