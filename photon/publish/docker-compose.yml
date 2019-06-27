@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  app:
+    image: node:10
+    volumes:
+      - ./:/root
+    working_dir: /root
+    command: /root/publish.sh
