@@ -1,5 +1,6 @@
 steps:
-  - label: ':shell: Test'
+  - command: clone-repo.sh
+  - label: ':shell: '
     plugins:
       - docker-compose:
           config: .buildkite/docker-compose.yml
