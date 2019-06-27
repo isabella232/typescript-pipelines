@@ -3,5 +3,5 @@ steps:
   - label: ':shell: '
     plugins:
       - docker-compose:
-          config: .buildkite/docker-compose.yml
+          config: docker-compose.yml
           run: app
