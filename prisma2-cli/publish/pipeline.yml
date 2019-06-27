@@ -1,5 +1,4 @@
 steps:
-  - command: lift/publish/clone-repo.sh
   - label: ':shell: '
     plugins:
       - docker-compose:
