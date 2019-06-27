@@ -9,3 +9,4 @@ services:
     environment:
       - NPM_TOKEN
       - GITHUB_TOKEN
+      - PUBLISH_PRISMA2
