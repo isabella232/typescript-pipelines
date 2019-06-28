@@ -84,7 +84,7 @@ fi
 # concatenate messages
 # order: -a [-m prisma2-message] [-m cli-message] [-m introspection-message] [-m [skip ci]]
 commitMessages+=(-m "[skip ci]")
-gitArgs+=( "${commitMessage[@]}" )
+gitArgs+=( "${commitMessages[@]}" )
 
 # init git config
 git config --global user.email "prismabots@gmail.com"

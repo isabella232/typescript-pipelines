@@ -82,7 +82,7 @@ fi
 # concatenate messages
 # order: -a [-m photon-message] [-m fetch-engine-message] [-m engine-core-message] [-m [skip ci]]
 commitMessages+=(-m "[skip ci]")
-gitArgs+=( "${commitMessage[@]}" )
+gitArgs+=( "${commitMessages[@]}" )
 
 # init git config
 git config --global user.email "prismabots@gmail.com"
