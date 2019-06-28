@@ -70,9 +70,12 @@ if [ $PUBLISH_PHOTON == "true" ]; then
   jq ".version = ${photonVersion}" package.json > "$tmp" && mv "$tmp" package.json
 
   # publish and add to commit message
-  yarn publish --patch --no-git-tag-version
-  photonVersion=$(cat package.json | jq .version | sed 's/"//g')
-  gitArgs+=(-m "@prisma/photon@$photonVersion")
+  if [ -z "$BUMP_ONY" ]; then
+    yarn publish --patch --no-git-tag-version
+    photonVersion=$(cat package.json | jq .version | sed 's/"//g')
+    gitArgs+=(-m "@prisma/photon@$photonVersion")
+  fi
+
   cd ../..
 fi
 
