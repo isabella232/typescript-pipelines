@@ -75,7 +75,8 @@ if [ "$PUBLISH_PRISMA2" == "true" ]; then
   jq ".version = ${prisma2Version}" package.json > "$tmp" && mv "$tmp" package.json
 
   # publish and add to commit message
-  yarn publish --patch --no-git-tag-version
+  # ghetto resiliency
+  yarn publish --patch --no-git-tag-version || yarn publish --patch --no-git-tag-version
   prisma2Version=$(cat package.json | jq .version | sed 's/"//g')
   gitArgs+=(-m "prisma2@$prisma2Version")
   cd ..
