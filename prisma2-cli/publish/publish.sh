@@ -25,7 +25,7 @@ fi
 # collecting git messages
 commitMessages=()
 
-if [ $PUBLISH_CLI == "true" ]; then
+if [ "$PUBLISH_CLI" == "true" ]; then
   cd cli
   yarn
 
@@ -42,7 +42,7 @@ if [ $PUBLISH_CLI == "true" ]; then
   sleep 4 # let npm breathe
 fi
 
-if [ $PUBLISH_INTROSPECTION == "true" ]; then
+if [ "$PUBLISH_INTROSPECTION" == "true" ]; then
   cd introspection
   yarn
   yarn update-deps
@@ -64,7 +64,7 @@ gitArgs=(
   -a
 )
 
-if [ $PUBLISH_PRISMA2 == "true" ]; then
+if [ "$PUBLISH_PRISMA2" == "true" ]; then
   cd prisma2
   yarn
   yarn update-deps

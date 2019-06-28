@@ -20,7 +20,7 @@ fi
 # collecting git messages
 commitMessages=()
 
-if [ $PUBLISH_FETCH_ENGINE == "true" ]; then
+if [ "$PUBLISH_FETCH_ENGINE" == "true" ]; then
   cd packages/fetch-engine 
   yarn
 
@@ -37,7 +37,7 @@ if [ $PUBLISH_FETCH_ENGINE == "true" ]; then
   sleep 4 # let npm breathe
 fi
 
-if [ $PUBLISH_ENGINE_CORE == "true" ]; then
+if [ "$PUBLISH_ENGINE_CORE" == "true" ]; then
   cd packages/engine-core
   yarn
   yarn update-deps
@@ -59,7 +59,7 @@ gitArgs=(
   -a
 )
 
-if [ $PUBLISH_PHOTON == "true" ]; then
+if [ "$PUBLISH_PHOTON" == "true" ]; then
   cd packages/photon
   yarn
   yarn update-deps
