@@ -10,7 +10,6 @@ env
 git clone https://github.com/prisma/lift
 cd lift
 yarn
-yarn test
 # make sure we're having the latest version
 VERSION=$(npm info @prisma/lift --json | jq .version)
 tmp=$(mktemp)

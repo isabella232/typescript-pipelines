@@ -2,5 +2,5 @@ steps:
   - label: ':package: Publish to NPM & push new package.json to github'
     plugins:
       - docker-compose:
-          config: lift/publish/docker-compose.yml
+          config: photon/publish/docker-compose.yml
           run: app
