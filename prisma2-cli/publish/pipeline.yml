@@ -1,5 +1,5 @@
 steps:
-  - label: ':shell: '
+  - label: ':package: Publish to NPM & push new package.json to github'
     plugins:
       - docker-compose:
           config: lift/publish/docker-compose.yml

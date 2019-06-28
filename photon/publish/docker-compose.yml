@@ -9,4 +9,6 @@ services:
     environment:
       - NPM_TOKEN
       - GITHUB_TOKEN
-      - PUBLISH_PRISMA2
+      - PUBLISH_PHOTON
+      - PUBLISH_ENGINE_CORE
+      - PUBLISH_FETCH_ENGINE
