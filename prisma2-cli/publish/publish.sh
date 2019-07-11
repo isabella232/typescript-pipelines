@@ -2,6 +2,11 @@
 
 set -ex
 
+# init git config
+git config --global user.email "prismabots@gmail.com"
+git config --global user.name "prisma-bot"
+
+
 echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 
 wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
@@ -77,11 +82,11 @@ if [ "$PUBLISH_PRISMA2" == "true" ]; then
   # publish and add to commit message
   # ghetto resiliency
   if [[ $BUILDKITE_TAG ]]; then
-    yarn publish --new-version $BUILDKITE_TAG
+    yarn publish --new-version $BUILDKITE_TAG --no-git-tag-version
   else
     prisma2AlphaVersion=$(npm info prisma2 --tag alpha --json | jq .version)
     prisma2AlphaVersion=$(./scripts/bump-version.js $prisma2AlphaVersion)
-    yarn publish --tag alpha --new-version $prisma2AlphaVersion
+    yarn publish --tag alpha --new-version $prisma2AlphaVersion  --no-git-tag-version
   fi
 
   prisma2Version=$(cat package.json | jq .version | sed 's/"//g')
@@ -93,10 +98,6 @@ fi
 # order: -a [-m prisma2-message] [-m cli-message] [-m introspection-message] [-m [skip ci]]
 commitMessages+=(-m "[skip ci]")
 gitArgs+=( "${commitMessages[@]}" )
-
-# init git config
-# git config --global user.email "prismabots@gmail.com"
-# git config --global user.name "prisma-bot"
 
 # spread gitArgs array
 # git commit "${gitArgs[@]}"
