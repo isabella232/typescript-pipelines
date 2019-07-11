@@ -3,6 +3,7 @@
 set -ex
 
 echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+
 wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 mv jq-linux64 /usr/local/bin/jq
 chmod +x /usr/local/bin/jq
@@ -75,7 +76,14 @@ if [ "$PUBLISH_PRISMA2" == "true" ]; then
 
   # publish and add to commit message
   # ghetto resiliency
-  yarn publish --patch --no-git-tag-version || yarn publish --patch --no-git-tag-version
+  if [[ $BUILDKITE_TAG ]]; then
+    yarn publish --new-version $BUILDKITE_TAG
+  else
+    prisma2AlphaVersion=$(npm info prisma2 --tag alpha --json | jq .version)
+    prisma2AlphaVersion=$(./scripts/bump-version.js $prisma2AlphaVersion)
+    yarn publish --tag alpha --new-version $prisma2AlphaVersion
+  fi
+
   prisma2Version=$(cat package.json | jq .version | sed 's/"//g')
   gitArgs+=(-m "prisma2@$prisma2Version")
   cd ..
@@ -87,12 +95,12 @@ commitMessages+=(-m "[skip ci]")
 gitArgs+=( "${commitMessages[@]}" )
 
 # init git config
-git config --global user.email "prismabots@gmail.com"
-git config --global user.name "prisma-bot"
+# git config --global user.email "prismabots@gmail.com"
+# git config --global user.name "prisma-bot"
 
 # spread gitArgs array
-git commit "${gitArgs[@]}"
+# git commit "${gitArgs[@]}"
 
 # push
-git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/prisma2-cli.git > /dev/null 2>&1
-git push --quiet --set-upstream origin-push $branch
+# git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/prisma2-cli.git > /dev/null 2>&1
+# git push --quiet --set-upstream origin-push $branch
