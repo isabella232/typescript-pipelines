@@ -14,7 +14,7 @@ mv jq-linux64 /usr/local/bin/jq
 chmod +x /usr/local/bin/jq
 
 git clone https://github.com/prisma/prisma2
-cd prisma2-cli/cli
+cd prisma2/cli
 
 # TODO: Remove this
 # if [ -z "$PUBLISH_CLI" ] && [ -z "$PUBLISH_INTROSPECTION" ] && [ -z "$PUBLISH_PRISMA2" ]; then
