@@ -6,6 +6,8 @@ services:
       - ./:/root
     working_dir: /root
     command: /root/publish.sh
+    depends_on:
+      - postgres
     environment:
       - TEST_POSTGRES_URI=postgres://prisma:prisma@postgres/
       - NPM_TOKEN
