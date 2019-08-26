@@ -7,8 +7,17 @@ services:
     working_dir: /root
     command: /root/publish.sh
     environment:
+      - TEST_POSTGRES_URI=postgres://prisma:prisma@postgres/
       - NPM_TOKEN
       - GITHUB_TOKEN
       - PUBLISH_PRISMA2
       - PUBLISH_CLI
       - PUBLISH_INTROSPECTION
+  postgres:
+    image: postgres:10.3
+    restart: always
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+    volumes:
+      - postgres:/var/lib/postgresql/data
