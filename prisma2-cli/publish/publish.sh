@@ -100,8 +100,8 @@ commitMessages+=(-m "[skip ci]")
 gitArgs+=( "${commitMessages[@]}" )
 
 # spread gitArgs array
-git commit "${gitArgs[@]}"
+#git commit "${gitArgs[@]}"
 
 # push
-git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/prisma2-cli.git > /dev/null 2>&1
-git push --quiet --set-upstream origin-push $branch
+#git remote add origin-push https://${GITHUB_TOKEN}@github.com/prisma/prisma2-cli.git > /dev/null 2>&1
+#git push --quiet --set-upstream origin-push $branch
