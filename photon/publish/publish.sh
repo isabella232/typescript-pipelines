@@ -64,7 +64,7 @@ if [ "$PUBLISH_PHOTON" == "true" ]; then
   yarn update-deps
 
   # ensure latest version
-  photonVersion=$(npm info @prisma/photon --json | jq .version)
+  photonVersion=$(npm info @prisma/photon-lib --json | jq .version)
   tmp=$(mktemp)
   jq ".version = ${photonVersion}" package.json > "$tmp" && mv "$tmp" package.json
 
@@ -72,7 +72,7 @@ if [ "$PUBLISH_PHOTON" == "true" ]; then
   if [ -z "$BUMP_ONLY" ]; then
     yarn publish --patch --no-git-tag-version
     photonVersion=$(cat package.json | jq .version | sed 's/"//g')
-    gitArgs+=(-m "@prisma/photon@$photonVersion")
+    gitArgs+=(-m "@prisma/photon-lib@$photonVersion")
   fi
 
   cd ../..
