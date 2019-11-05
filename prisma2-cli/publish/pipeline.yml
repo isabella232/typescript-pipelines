@@ -1,6 +1,6 @@
 steps:
   - label: ':package: Publish to NPM & push new package.json to github'
     plugins:
-      - docker-compose:
+      - docker-compose#v3.0.3:
           config: prisma2-cli/publish/docker-compose.yml
           run: app
